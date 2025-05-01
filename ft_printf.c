@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	ft_is_for_printf(char a)
 {
@@ -26,9 +26,9 @@ static int	ft_checkflag(va_list args, char a, int *len)
 
 	temp = 0;
 	if (a == 'c')
-		temp = ft_putchar_fd_l(va_arg(args, int), 1);
+		temp = ft_putchar_fd(va_arg(args, int), 1);
 	else if (a == 's')
-		temp = ft_putstr_fd_l(va_arg(args, char *), 1);
+		temp = ft_putstr_fd(va_arg(args, char *), 1);
 	else if (a == 'p')
 		temp = ft_pointer(va_arg(args, size_t));
 	else if (a == 'd' || a == 'i')
@@ -38,7 +38,7 @@ static int	ft_checkflag(va_list args, char a, int *len)
 	else if (a == 'x' || a == 'X')
 		temp = ft_hexadecimal(va_arg(args, unsigned int), a);
 	else if (a == '%')
-		temp = ft_putchar_fd_l('%', 1);
+		temp = ft_putchar_fd('%', 1);
 	else
 		return (-1);
 	if (temp < 0)
@@ -66,7 +66,7 @@ static int	process_format(const char *format, va_list args, int *len_ptr)
 		}
 		else
 		{
-			len += ft_putchar_fd_l(format[i], 1);
+			len += ft_putchar_fd(format[i], 1);
 			if (len < 0)
 				return (-1);
 		}

@@ -3,14 +3,14 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRC =	ft_printf.c \
-		srcs/ft_putchar_fd_l.c \
-		srcs/ft_putstr_fd_l.c \
-		srcs/ft_putnbr_fd_l.c \
-		srcs/ft_hexadecimal.c \
-		srcs/ft_strlcpy.c \
-		srcs/ft_strlen.c \
-		srcs/ft_pointer.c \
-		srcs/ft_u_putnbr_fd_l.c
+		src/ft_putchar_fd.c \
+		src/ft_putstr_fd.c \
+		src/ft_putnbr_fd.c \
+		src/ft_hexadecimal.c \
+		src/ft_strlcpy.c \
+		src/ft_strlen.c \
+		src/ft_pointer.c \
+		src/ft_u_putnbr_fd.c
 
 OBJ = ${SRC:.c=.o}
 
