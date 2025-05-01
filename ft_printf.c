@@ -57,6 +57,7 @@ static int	process_format(const char *format, va_list args, int *len_ptr)
 	len = *len_ptr;
 	while (format[i])
 	{
+		//check se o caracter atual é % e o próximo é válido para printf
 		if (format[i] == '%' && ft_is_for_printf(format[i + 1]))
 		{
 			len = ft_checkflag(args, format[i + 1], &len);

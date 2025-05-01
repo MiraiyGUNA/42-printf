@@ -12,7 +12,7 @@
 
 #include "../ft_printf.h"
 
-static int	print_pointer_address(size_t x, char *base)
+static int	ft_print_pointer_address(size_t x, char *base)
 {
 	char	string[25];
 	int		i;
@@ -31,7 +31,7 @@ static int	print_pointer_address(size_t x, char *base)
 		temp = ft_putchar_fd(string[i], 1);
 		if (temp < 0)
 			return (-1);
-		len += temp;
+		len = len + temp;
 	}
 	return (len);
 }
@@ -54,10 +54,10 @@ int	ft_pointer(size_t x)
 	}
 	else
 	{
-		result = print_pointer_address(x, base);
+		result = ft_print_pointer_address(x, base);
 		if (result < 0)
 			return (-1);
-		len += result;
+		len = len + sult;
 	}
 	return (len);
 }
