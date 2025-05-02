@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:05:23 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/01 16:05:23 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:44:58 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	ft_pointer(size_t x)
 		result = ft_print_pointer_address(x, base);
 		if (result < 0)
 			return (-1);
-		len = len + sult;
+		len = len + result;
 	}
 	return (len);
 }

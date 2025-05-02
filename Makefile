@@ -6,11 +6,9 @@ SRC =	ft_printf.c \
 		src/ft_putchar_fd.c \
 		src/ft_putstr_fd.c \
 		src/ft_putnbr_fd.c \
-		src/ft_hexadecimal.c \
 		src/ft_strlcpy.c \
 		src/ft_strlen.c \
 		src/ft_pointer.c \
-		src/ft_u_putnbr_fd.c
 
 OBJ = ${SRC:.c=.o}
 

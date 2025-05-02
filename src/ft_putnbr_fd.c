@@ -6,23 +6,53 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:36:20 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/01 15:36:44 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:36:38 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+static int	ft_int_len(int n)
 {
-	long int	nbr;
+	int	len;
 
-	nbr = n;
-	if (nbr < 0)
+	len = 1;
+	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
-		nbr = nbr * -1;
+		len++;
+		n *= -1;
 	}
-	if (nbr > 9) 
-		ft_putnbr_fd(nbr / 10, fd);
-	ft_putchar_fd(nbr % 10 + '0', fd);
+	while (n > 9)
+	{
+		len++;
+		n /= 10;
+	}
+	return (len);
+}
+
+int	ft_putnbr_fd(int n, int fd)
+{
+	int	len;
+
+	if (n == -2147483648)
+	{
+		if (ft_putstr_fd("-2147483648", fd) < 0)
+			return (-1);
+		return (11);
+	}
+	len = ft_int_len(n);
+	if (n < 0)
+	{
+		if (ft_putchar_fd('-', fd) < 0)
+			return (-1);
+		n = -n;
+	}
+	if (n >= 10)
+	{
+		if (ft_putnbr_fd(n / 10, fd) < 0)
+			return (-1);
+	}
+	if (ft_putchar_fd(n % 10 + '0', fd) < 0)
+		return (-1);
+	return (len);
 }
