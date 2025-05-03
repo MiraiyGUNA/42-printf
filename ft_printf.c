@@ -20,32 +20,32 @@ static int	ft_is_printf_char(char c)
 	return (0);
 }
 
-static int	ft_send_to_correct_function(va_list args, char a, int *len)
+static int	ft_send_to_correct_function(va_list args, char c, int *plength)
 {
 	int	temp;
 
 	temp = 0;
-	if (a == 'c')
+	if (c == 'c')
 		temp = ft_putchar_fd(va_arg(args, int), 1);
-	else if (a == 's')
+	else if (c == 's')
 		temp = ft_putstr_fd(va_arg(args, char *), 1);
-	else if (a == 'p')
+	else if (c == 'p')
 		temp = ft_pointer(va_arg(args, size_t));
-	else if (a == 'd' || a == 'i')
+	else if (c == 'd' || c == 'i')
 		temp = ft_putnbr_fd(va_arg(args, int), 1);
-	else if (a == 'u')
+	else if (c == 'u')
 		temp = ft_u_putnbr_fd(va_arg(args, unsigned int), 1);
-	else if (a == 'x' || a == 'X')
-		temp = ft_hexadecimal(va_arg(args, unsigned int), a);
-	else if (a == '%')
+	else if (c == 'x' || c == 'X')
+		temp = ft_hexadecimal(va_arg(args, unsigned int), c);
+	else if (c == '%')
 		temp = ft_putchar_fd('%', 1);
 	else
 		return (-1);
 	if (temp < 0)
-		*len = -1;
+		*plength = -1;
 	else
-		*len += temp;
-	return (*len);
+		*plength = *plength + temp;
+	return (*plength);
 }
 
 static int	ft_format_check(const char *format, va_list args, int *plength)
