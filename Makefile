@@ -8,7 +8,8 @@ SRC =	ft_printf.c \
 		src/ft_putnbr_fd.c \
 		src/ft_strlcpy.c \
 		src/ft_strlen.c \
-		src/ft_pointer.c \
+		src/ft_putpointer.c \
+		src/ft_hexadecimal.c
 
 OBJ = ${SRC:.c=.o}
 

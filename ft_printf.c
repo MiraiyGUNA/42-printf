@@ -14,8 +14,8 @@
 
 static int	ft_is_printf_char(char c)
 {
-	if (a == 'c' || a == 's' || a == 'p' || a == 'd' || a == 'i' || a == 'u'
-		|| a == 'x' || a == 'X' || a == '%')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X' || c == '%')
 		return (1);
 	return (0);
 }
@@ -30,11 +30,11 @@ static int	ft_send_to_correct_function(va_list args, char c, int *plength)
 	else if (c == 's')
 		temp = ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'p')
-		temp = ft_pointer(va_arg(args, size_t));
+		temp = ft_putpointer(va_arg(args, size_t));
 	else if (c == 'd' || c == 'i')
 		temp = ft_putnbr_fd(va_arg(args, int), 1);
 	else if (c == 'u')
-		temp = ft_u_putnbr_fd(va_arg(args, unsigned int), 1);
+		temp = ft_putnbr_fd(va_arg(args, unsigned int), 1);
 	else if (c == 'x' || c == 'X')
 		temp = ft_hexadecimal(va_arg(args, unsigned int), c);
 	else if (c == '%')
@@ -57,10 +57,10 @@ static int	ft_format_check(const char *format, va_list args, int *plength)
 	{
 		if (*format == '%' && ft_is_printf_char(*(format + 1)))
 		{
-			length = ft_send_to_correct_function(args, *(format + 1), &len);
+			length = ft_send_to_correct_function(args, *(format + 1), &length);
 			if (length < 0)
 				return (-1);
-			format++
+			format++;
 		}
 		else
 		{

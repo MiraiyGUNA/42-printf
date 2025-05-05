@@ -22,8 +22,8 @@ size_t	ft_strlen(const char *str);
 int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putnbr_fd(int n, int fd);
-int		ft_u_putnbr_fd(unsigned int n, int fd);
-int		ft_hexadecimal(unsigned int x, char a);
-int		ft_pointer(size_t x);
+int		ft_putnbr_fd(unsigned int n, int fd);
+int		ft_hexadecimal(unsigned int x, char format);
+int		ft_putpointer(size_t x);
 
 #endif

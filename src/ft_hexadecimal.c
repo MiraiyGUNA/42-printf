@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pointer.c                                       :+:      :+:    :+:   */
+/*   ft_hexadecimal.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 16:05:23 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/02 14:44:58 by vde-maga         ###   ########.fr       */
+/*   Created: 2025/05/05 13:03:34 by vde-maga          #+#    #+#             */
+/*   Updated: 2025/05/05 13:03:34 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
-
-static int	ft_print_pointer_address(size_t x, char *base)
+static int	print_hexadecimal(unsigned int x, const char *base)
 {
-	char	string[25];
+	char	string[9]; // até 8 dígitos para 32-bit unsigned int + segurança extra
 	int		i;
-	int		len;
+	int		length;
 	int		temp;
 
-	i = 0;
-	len = 0;
+    i = 0;
+    length = 0;
 	while (x != 0)
 	{
-		string[i++] = base[x % 16];
+		string[i] = base[x % 16];
+		i++;
 		x = x / 16;
 	}
 	while (i--)
@@ -31,33 +30,26 @@ static int	ft_print_pointer_address(size_t x, char *base)
 		temp = ft_putchar_fd(string[i], 1);
 		if (temp < 0)
 			return (-1);
-		len = len + temp;
+		length = length + temp;
 	}
-	return (len);
+	return (length);
 }
 
-int	ft_pointer(size_t x)
+int	ft_hexadecimal(unsigned int x, char format)
 {
-	char	base[17];
-	int		len;
-	int		result;
+	const char	*base;
+	int			result;
 
-	ft_strlcpy(base, "0123456789abcdef", sizeof(base));
-	if (write(1, "0x", 2) < 0)
-		return (-1);
-	len = 2;
-	if (x == 0)
-	{
-		if (write(1, "0", 1) < 0)
-			return (-1);
-		len++;
-	}
+	if (format == 'X')
+		base = "0123456789ABCDEF";
 	else
-	{
-		result = ft_print_pointer_address(x, base);
-		if (result < 0)
-			return (-1);
-		len = len + result;
-	}
-	return (len);
+		base = "0123456789abcdef";
+
+	if (x == 0)
+		return (ft_putchar_fd('0', 1));
+
+	result = print_hexadecimal(x, base);
+	if (result < 0)
+		return (-1);
+	return (result);
 }
