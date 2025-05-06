@@ -6,21 +6,21 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:05:23 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/06 14:12:56 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/06 18:29:27 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int	ft_print_pointer_address(size_t x, const char *base)
+static int	print_pointer_address(size_t x, char *base)
 {
-	char	string[20];
+	char	string[25];
 	int		i;
-	int		length;
-	int		result;
+	int		len;
+	int		temp;
 
 	i = 0;
-	length = 0;
+	len = 0;
 	while (x != 0)
 	{
 		string[i++] = base[x % 16];
@@ -28,33 +28,33 @@ static int	ft_print_pointer_address(size_t x, const char *base)
 	}
 	while (i--)
 	{
-		result = ft_putchar_fd(string[i], 1);
-		if (result < 0)
+		temp = ft_putchar_fd(string[i], 1);
+		if (temp < 0)
 			return (-1);
-		length = length + result;
+		len += temp;
 	}
-	return (length);
+	return (len);
 }
 
 int	ft_putpointer(size_t x)
 {
-	const char	*base;
-	int			length;
-	int			result;
+	char	base[17];
+	int		len;
+	int		result;
 
-	base = "0123456789abcdef";
-	length = 0;
-	if (write(1, "0x", 2) < 0)
-		return (-1);
-	length = length + 2;
+	ft_strlcpy(base, "0123456789abcdef", sizeof(base));
 	if (x == 0)
 	{
-		if (write(1, "0", 1) < 0)
+		if (write(1, "(nil)", 5) < 0)
 			return (-1);
-		return (length + 1);
+		return (5);
 	}
-	result = ft_print_pointer_address(x, base);
+	if (write(1, "0x", 2) < 0)
+		return (-1);
+	len = 2;
+	result = print_pointer_address(x, base);
 	if (result < 0)
 		return (-1);
-	return (length + result);
+	len += result;
+	return (len);
 }
