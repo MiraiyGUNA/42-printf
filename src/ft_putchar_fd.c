@@ -6,13 +6,13 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:53:41 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/01 14:53:41 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:12:15 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int ft_putchar_fd_l(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
 	return (write(fd, &c, 1));
 }

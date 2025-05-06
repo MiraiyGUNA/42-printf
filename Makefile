@@ -6,6 +6,7 @@ SRC =	ft_printf.c \
 		src/ft_putchar_fd.c \
 		src/ft_putstr_fd.c \
 		src/ft_putnbr_fd.c \
+		src/ft_putnbr_u_fd.c \
 		src/ft_strlcpy.c \
 		src/ft_strlen.c \
 		src/ft_putpointer.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pointer.c                                       :+:      :+:    :+:   */
+/*   ft_putpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:05:23 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/02 14:44:58 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:12:56 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_print_pointer_address(size_t x, const char *base)
 	return (length);
 }
 
-int	ft_pointer(size_t x)
+int	ft_putpointer(size_t x)
 {
 	const char	*base;
 	int			length;
@@ -44,7 +44,6 @@ int	ft_pointer(size_t x)
 
 	base = "0123456789abcdef";
 	length = 0;
-
 	if (write(1, "0x", 2) < 0)
 		return (-1);
 	length = length + 2;

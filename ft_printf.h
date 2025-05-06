@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:31:30 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/04/26 12:31:30 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:30:57 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str);
 int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putnbr_fd(int n, int fd);
-int		ft_putnbr_fd(unsigned int n, int fd);
+int		ft_putnbr_u_fd(unsigned int n, int fd);
 int		ft_hexadecimal(unsigned int x, char format);
 int		ft_putpointer(size_t x);
 

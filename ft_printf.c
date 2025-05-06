@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:30:54 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/02 15:23:48 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/06 14:31:11 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_send_to_correct_function(va_list args, char c, int *plength)
 	else if (c == 'd' || c == 'i')
 		temp = ft_putnbr_fd(va_arg(args, int), 1);
 	else if (c == 'u')
-		temp = ft_putnbr_fd(va_arg(args, unsigned int), 1);
+		temp = ft_putnbr_u_fd(va_arg(args, unsigned int), 1);
 	else if (c == 'x' || c == 'X')
 		temp = ft_hexadecimal(va_arg(args, unsigned int), c);
 	else if (c == '%')
@@ -74,7 +74,6 @@ static int	ft_format_check(const char *format, va_list args, int *plength)
 	return (0);
 }
 
-
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
@@ -82,11 +81,11 @@ int	ft_printf(const char *format, ...)
 
 	length = 0;
 	va_start(args, format);
-	if(ft_format_check(format, args, &length) < 0)
+	if (ft_format_check(format, args, &length) < 0)
 	{
 		va_end(args);
 		return (-1);
 	}
 	va_end(args);
-	return(length);
+	return (length);
 }
