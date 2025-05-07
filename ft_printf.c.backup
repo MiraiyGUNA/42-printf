@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:30:54 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/07 14:28:31 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:24:25 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,19 +89,10 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (length);
 }
-/*
+
 #include "ft_printf.h"
 #include <limits.h>
 #include <stdio.h>
-
-// Definições de cores ANSI
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define MAGENTA "\033[35m"
-#define CYAN "\033[36m"
-#define RESET "\033[0m"
 
 int	main(void)
 {
@@ -118,45 +109,46 @@ int	main(void)
 	u_num = 3000000000U, hex = 255;
 	null_str = NULL;
 	null_ptr = NULL;
-	printf(BLUE "======== TESTES COM CARACTERES ========\n" RESET);
-	printf(GREEN "Printf: Caractere: %c\n" RESET, c);
-	ft_printf(RED "Ft_printf: Caractere: %c\n" RESET, c);
-	printf(BLUE "======== TESTES COM STRINGS ========\n" RESET);
-	printf(GREEN "Printf: String: %s\n" RESET, str);
-	ft_printf(RED "Ft_printf: String: %s\n" RESET, str);
-	printf(BLUE "======== TESTES COM PONTEIROS ========\n" RESET);
-	printf(GREEN "Printf: Endereço de x: %p\n" RESET, (void *)&x);
-	ft_printf(RED "Ft_printf: Endereço de x: %p\n" RESET, &x);
-	printf(BLUE "======== TESTES COM NÚMEROS ========\n" RESET);
-	printf(GREEN "Printf: Número decimal: %d\n" RESET, num1);
-	ft_printf(RED "Ft_printf: Número decimal: %d\n" RESET, num1);
-	printf(GREEN "Printf: Número inteiro: %i\n" RESET, num2);
-	ft_printf(RED "Ft_printf: Número inteiro: %i\n" RESET, num2);
-	printf(BLUE "======== TESTES COM NÚMEROS SEM SINAL ========\n" RESET);
-	printf(GREEN "Printf: Número sem sinal: %u\n" RESET, u_num);
-	ft_printf(RED "Ft_printf: Número sem sinal: %u\n" RESET, u_num);
-	printf(BLUE "======== TESTES COM HEXADECIMAIS ========\n" RESET);
-	printf(GREEN "Printf: Hexadecimal minúsculo: %x\n" RESET, hex);
-	ft_printf(RED "Ft_printf: Hexadecimal minúsculo: %x\n" RESET, hex);
-	printf(GREEN "Printf: Hexadecimal maiúsculo: %X\n" RESET, hex);
-	ft_printf(RED "Ft_printf: Hexadecimal maiúsculo: %X\n" RESET, hex);
-	printf(BLUE "======== TESTES COM PORCENTAGEM ========\n" RESET);
-	printf(GREEN "Printf: Porcentagem: %%\n" RESET);
-	ft_printf(RED "Ft_printf: Porcentagem: %%\n" RESET);
-	printf(YELLOW "======== TESTES COM NULLS & ERROS ========\n" RESET);
-	printf(GREEN "Printf: String NULL: %s\n" RESET, null_str);
-	ft_printf(RED "Ft_printf: String NULL: %s\n" RESET, null_str);
-	printf(GREEN "Printf: Ponteiro NULL: %p\n" RESET, null_ptr);
-	ft_printf(RED "Ft_printf: Ponteiro NULL: %p\n" RESET, null_ptr);
-	printf(GREEN "Printf: INT_MAX: %d\n" RESET, INT_MAX);
-	ft_printf(RED "Ft_printf: INT_MAX: %d\n" RESET, INT_MAX);
-	printf(GREEN "Printf: INT_MIN: %d\n" RESET, INT_MIN);
-	ft_printf(RED "Ft_printf: INT_MIN: %d\n" RESET, INT_MIN);
-	printf(GREEN "Printf: UINT_MAX: %u\n" RESET, UINT_MAX);
-	ft_printf(RED "Ft_printf: UINT_MAX: %u\n" RESET, UINT_MAX);
-	printf(MAGENTA "======== TESTES COM FORMATAÇÃO ESTRANHA ========\n" RESET);
-	printf(GREEN "Printf: Mistura estranha: %s %d %%\n" RESET, "Texto", 42);
-	ft_printf(RED "Ft_printf: Mistura estranha: %s %d %%\n" RESET, "Texto", 42);
+	// Testes com caracteres
+	printf("Printf: Caractere: %c\n", c);
+	ft_printf("Ft_printf: Caractere: %c\n", c);
+	// Testes com strings
+	printf("Printf: String: %s\n", str);
+	ft_printf("Ft_printf: String: %s\n", str);
+	// Testes com ponteiros
+	printf("Printf: Endereço de x: %p\n", (void *)&x);
+	ft_printf("Ft_printf: Endereço de x: %p\n", &x);
+	// Testes com números inteiros
+	printf("Printf: Número decimal: %d\n", num1);
+	ft_printf("Ft_printf: Número decimal: %d\n", num1);
+	printf("Printf: Número inteiro: %i\n", num2);
+	ft_printf("Ft_printf: Número inteiro: %i\n", num2);
+	// Testes com números sem sinal
+	printf("Printf: Número sem sinal: %u\n", u_num);
+	ft_printf("Ft_printf: Número sem sinal: %u\n", u_num);
+	// Testes com números hexadecimais
+	printf("Printf: Hexadecimal minúsculo: %x\n", hex);
+	ft_printf("Ft_printf: Hexadecimal minúsculo: %x\n", hex);
+	printf("Printf: Hexadecimal maiúsculo: %X\n", hex);
+	ft_printf("Ft_printf: Hexadecimal maiúsculo: %X\n", hex);
+	// Teste com o caractere de porcentagem
+	printf("Printf: Porcentagem: %%\n");
+	ft_printf("Ft_printf: Porcentagem: %%\n");
+	// Testes com NULL
+	printf("Printf: String NULL: %s\n", null_str);
+	ft_printf("Ft_printf: String NULL: %s\n", null_str);
+	// Testes com ponteiro NULL
+	printf("Printf: Ponteiro NULL: %p\n", null_ptr);
+	ft_printf("Ft_printf: Ponteiro NULL: %p\n", null_ptr);
+	// Testes com números extremos
+	printf("Printf: INT_MAX: %d\n", INT_MAX);
+	ft_printf("Ft_printf: INT_MAX: %d\n", INT_MAX);
+	printf("Printf: INT_MIN: %d\n", INT_MIN);
+	ft_printf("Ft_printf: INT_MIN: %d\n", INT_MIN);
+	printf("Printf: UINT_MAX: %u\n", UINT_MAX);
+	ft_printf("Ft_printf: UINT_MAX: %u\n", UINT_MAX);
+	// Testes com mistura de formatos errados
+	printf("Printf: Mistura estranha: %s %d %%\n", "Texto", 42);
+	ft_printf("Ft_printf: Mistura estranha: %s %d %%\n", "Texto", 42);
 	return (0);
 }
-*/

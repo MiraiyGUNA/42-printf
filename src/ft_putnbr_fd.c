@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:27:59 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/06 15:10:47 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:54:55 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 static int	ft_int_len(int n)
 {
-	int	len;
+	int	length;
 
-	len = 1;
+	length = 1;
 	if (n < 0)
 	{
-		len++;
-		n *= -1;
+		length++;
+		n = n * -1;
 	}
 	while (n > 9)
 	{
-		len++;
-		n /= 10;
+		length++;
+		n = n / 10;
 	}
-	return (len);
+	return (length);
 }
 
 int	ft_putnbr_fd(int n, int fd)
 {
-	int	len;
+	int	length;
 
 	if (n == -2147483648)
 	{
@@ -40,12 +40,12 @@ int	ft_putnbr_fd(int n, int fd)
 			return (-1);
 		return (11);
 	}
-	len = ft_int_len(n);
+	length = ft_int_len(n);
 	if (n < 0)
 	{
 		if (ft_putchar_fd('-', fd) < 0)
 			return (-1);
-		n = -n;
+		n = n * -1;
 	}
 	if (n >= 10)
 	{
@@ -54,5 +54,5 @@ int	ft_putnbr_fd(int n, int fd)
 	}
 	if (ft_putchar_fd(n % 10 + '0', fd) < 0)
 		return (-1);
-	return (len);
+	return (length);
 }

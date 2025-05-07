@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 14:32:26 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/06 14:38:29 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/07 13:53:45 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 static int	ft_u_int_len(unsigned int a)
 {
-	int	len;
+	int	length;
 
-	len = 1;
+	length = 1;
 	while (a > 9)
 	{
-		len++;
-		a /= 10;
+		length++;
+		a = a / 10;
 	}
-	return (len);
+	return (length);
 }
 
 int	ft_putnbr_u_fd(unsigned int n, int fd)
 {
-	int	len;
+	int	length;
 
-	len = ft_u_int_len(n);
+	length = ft_u_int_len(n);
 	if (n >= 10)
 	{
 		if (ft_putnbr_u_fd(n / 10, fd) < 0)
@@ -37,5 +37,5 @@ int	ft_putnbr_u_fd(unsigned int n, int fd)
 	}
 	if (ft_putchar_fd(n % 10 + '0', fd) < 0)
 		return (-1);
-	return (len);
+	return (length);
 }

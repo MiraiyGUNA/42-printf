@@ -36,12 +36,14 @@ Se quiser aprofundar mais algum detalhe, estou aqui para ajudar! 🚀
 
 Ótimas perguntas! Vamos analisá-las uma a uma. 🚀
 
-### **1. Por que usamos `char string[25]`? Poderíamos usar `char *string`?**
+### 1. Por que usamos `char string[25]`? Poderíamos usar `char *string`?
+
 A escolha de um array de tamanho fixo (`char string[25]`) garante que temos um espaço reservado na pilha para armazenar a conversão do número. O número 25 foi escolhido porque um endereço de memória em sistemas de 64 bits tem, no máximo, 16 caracteres em hexadecimal (por exemplo, `0xffffffffffffffff`). No entanto, como estamos armazenando caracteres individualmente, um tamanho maior pode ter sido escolhido por segurança.
 
 Se usássemos `char *string`, precisaríamos de **alocação dinâmica** (`malloc`), o que exigiria gerenciamento de memória e uso de `free()`. Neste caso, um array estático facilita a implementação sem precisar lidar com desalocação de memória.
 
-### **2. Por que imprimimos em ordem reversa?**
+### 2. Por que imprimimos em ordem reversa?
+
 A razão principal está na forma como convertemos números para diferentes bases:
 
 - Quando obtemos os dígitos hexadecimais, começamos pegando o **resto da divisão por 16** (`x % 16`), armazenamos esse valor, e então dividimos `x` sucessivamente por 16.
@@ -49,6 +51,7 @@ A razão principal está na forma como convertemos números para diferentes base
 - Para mostrar o número corretamente, precisamos percorrer o array de trás para frente, garantindo que os dígitos sejam impressos na ordem correta.
 
 Exemplo:
+
 ```
 x = 1234
 1. 1234 % 16 -> '2' (salvado primeiro)
@@ -59,19 +62,21 @@ x = 1234
 ```
 Se imprimíssemos na ordem de inserção, o resultado seria `"2d4"`, o que estaria invertido.
 
-### **3. Qual a lógica do `"0123456789abcdef"`?**
+### 3. Qual a lógica do `"0123456789abcdef"`?
+
 Este array representa a **base hexadecimal**, que usa os caracteres `0-9` e `a-f` para representar números de `0` a `15`. Ele funciona como uma **tabela de conversão** para transformar restos de divisão (`x % 16`) em caracteres:
 
 Exemplo:
+
 - `x % 16 = 10` → `base[10] = 'a'`
 - `x % 16 = 15` → `base[15] = 'f'`
 - `x % 16 = 3` → `base[3] = '3'`
 
 Este mecanismo nos permite usar `base[x % 16]` para obter diretamente o caractere correspondente.
 
-### **Resumo**
+### Resumo
+
 1. O tamanho 25 do array é por segurança, evitando alocação dinâmica.
 2. A ordem reversa é necessária porque a conversão de base começa com os dígitos menos significativos.
 3. `"0123456789abcdef"` é essencial para mapear corretamente números decimais para hexadecimal.
 
-Se tiver mais dúvidas, manda ver! 🔥
