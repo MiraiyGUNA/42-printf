@@ -6,18 +6,18 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:05:23 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/07 13:56:03 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/07 14:59:51 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int	print_pointer_address(size_t x, char *base)
+static int	ft_print_pointer_address(size_t x, char *base)
 {
 	char	string[25];
 	int		i;
 	int		length;
-	int		temp;
+	int		char_count;
 
 	i = 0;
 	length = 0;
@@ -28,10 +28,10 @@ static int	print_pointer_address(size_t x, char *base)
 	}
 	while (i--)
 	{
-		temp = ft_putchar_fd(string[i], 1);
-		if (temp < 0)
+		char_count = ft_putchar_fd(string[i], 1);
+		if (char_count < 0)
 			return (-1);
-		length = length + temp;
+		length = length + char_count;
 	}
 	return (length);
 }
@@ -40,7 +40,7 @@ int	ft_putpointer(size_t x)
 {
 	char	base[17];
 	int		length;
-	int		result;
+	int		char_count;
 
 	ft_strlcpy(base, "0123456789abcdef", sizeof(base));
 	if (x == 0)
@@ -52,9 +52,9 @@ int	ft_putpointer(size_t x)
 	if (write(1, "0x", 2) < 0)
 		return (-1);
 	length = 2;
-	result = print_pointer_address(x, base);
-	if (result < 0)
+	char_count = ft_print_pointer_address(x, base);
+	if (char_count < 0)
 		return (-1);
-	length = length + result;
+	length = length + char_count;
 	return (length);
 }
