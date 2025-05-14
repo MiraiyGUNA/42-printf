@@ -6,7 +6,7 @@
 /*   By: vde-maga <vde-maga@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 12:30:54 by vde-maga          #+#    #+#             */
-/*   Updated: 2025/05/07 14:28:31 by vde-maga         ###   ########.fr       */
+/*   Updated: 2025/05/07 15:34:00 by vde-maga         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,29 @@ static int	ft_is_printf_char(char c)
 
 static int	ft_send_to_correct_function(va_list args, char c, int *plength)
 {
-	int	temp;
+	int	char_count;
 
-	temp = 0;
+	char_count = 0;
 	if (c == 'c')
-		temp = ft_putchar_fd(va_arg(args, int), 1);
+		char_count = ft_putchar_fd(va_arg(args, int), 1);
 	else if (c == 's')
-		temp = ft_putstr_fd(va_arg(args, char *), 1);
+		char_count = ft_putstr_fd(va_arg(args, char *), 1);
 	else if (c == 'p')
-		temp = ft_putpointer(va_arg(args, size_t));
+		char_count = ft_putpointer(va_arg(args, size_t));
 	else if (c == 'd' || c == 'i')
-		temp = ft_putnbr_fd(va_arg(args, int), 1);
+		char_count = ft_putnbr_fd(va_arg(args, int), 1);
 	else if (c == 'u')
-		temp = ft_putnbr_u_fd(va_arg(args, unsigned int), 1);
+		char_count = ft_putnbr_u_fd(va_arg(args, unsigned int), 1);
 	else if (c == 'x' || c == 'X')
-		temp = ft_hexadecimal(va_arg(args, unsigned int), c);
+		char_count = ft_hexadecimal(va_arg(args, unsigned int), c);
 	else if (c == '%')
-		temp = ft_putchar_fd('%', 1);
+		char_count = ft_putchar_fd('%', 1);
 	else
 		return (-1);
-	if (temp < 0)
+	if (char_count < 0)
 		*plength = -1;
 	else
-		*plength = *plength + temp;
+		*plength = *plength + char_count;
 	return (*plength);
 }
 
